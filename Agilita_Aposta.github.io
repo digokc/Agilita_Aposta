@@ -190,7 +190,7 @@
         let currentUser;
         let responses = {};
         let currentPage = 1;
-        const itemsPerPage = 20;
+        const itemsPerPage = 2;
 
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -201,7 +201,7 @@
                 currentUser = { username: username, role: users[username].role, data: users[username].data };
                 document.getElementById('login-container').style.display = 'none';
                 document.getElementById('content-container').style.display = 'block';
-                document.getElementById('welcome-message').textContent = Bem-vindo, ${username}!;
+                document.getElementById('welcome-message').textContent = `Bem-vindo, ${username}!`;
 
                 if (currentUser.role === 'user') {
                     displayPage(1);
@@ -239,7 +239,6 @@
                     <td>${item.descProduto}</td>
                     <td>${item.descCor}</td>
                     <td><select data-item="${i}" data-user="${currentUser.username}">
-                        <option value="-" ${savedValue === '-' ? 'selected' : ''} disabled>-</option>
                         <option value="A" ${savedValue === 'A' ? 'selected' : ''}>A</option>
                         <option value="B" ${savedValue === 'B' ? 'selected' : ''}>B</option>
                         <option value="C" ${savedValue === 'C' ? 'selected' : ''}>C</option>
@@ -309,7 +308,7 @@
 
             for (const item in responses) {
                 for (const user in responses[item]) {
-                    consolidatedHTML += <tr><td>Item ${parseInt(item) + 1}</td><td>${user}</td><td>${responses[item][user]}</td></tr>;
+                    consolidatedHTML += `<tr><td>Item ${parseInt(item) + 1}</td><td>${user}</td><td>${responses[item][user]}</td></tr>`;
                 }
             }
 
@@ -326,7 +325,7 @@
 
             for (const item in responses) {
                 for (const user in responses[item]) {
-                    csvContent += ${parseInt(item) + 1},${user},${responses[item][user]}\n;
+                    csvContent += `${parseInt(item) + 1},${user},${responses[item][user]}\n`;
                 }
             }
 
